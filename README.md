@@ -1,6 +1,6 @@
 #ETS2/ATS Telemetry Plugin
 
-This is a fork of [the original telemetry plugin](https://github.com/nlhans/ets2-sdk-plugin) (by nlhans) tweaked specially for [ETS2 Telemetry Web Server](https://github.com/Funbit/ets2-telemetry-server).
+This is a fork of [Funbit's](https://github.com/Funbit/ets2-sdk-plugin) tweaked for fork of [ETS2 Telemetry Web Server](https://github.com/Lihis/ets2-telemetry-server).
  
 # Version history
 

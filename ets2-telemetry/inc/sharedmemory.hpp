@@ -15,6 +15,8 @@
 
 class SharedMemory
 {
+private:
+        LPCWSTR sharedMemFile;
 protected:
 
         LPCWSTR namePtr;
@@ -42,8 +44,6 @@ public:
         void Close();
 
 		void* getPtrAt(int offset) { return (void*) &(((unsigned char*)pBufferPtr)[offset]); }
-
-
 };
 
 #endif

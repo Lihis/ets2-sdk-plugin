@@ -1,4 +1,4 @@
-#include "SharedMemory.hpp"
+#include "sharedmemory.hpp"
 
 void SharedMemory::LogError(const char *logPtr)
 {
@@ -17,6 +17,7 @@ void SharedMemory::LogError(const char *logPtr)
 
 SharedMemory::SharedMemory(LPCWSTR namePtr, unsigned int size)
 {
+    this->sharedMemFile = L"Z:\\tmp\\shm_telemetry";
     this->mapsize = size;
     this->namePtr = namePtr;
 	this->isSharedMemoryHooked = false;
@@ -24,8 +25,16 @@ SharedMemory::SharedMemory(LPCWSTR namePtr, unsigned int size)
 	this->logFilePtr = NULL;
 #endif
 
+    HANDLE hFile = CreateFile(this->sharedMemFile,
+            GENERIC_READ | GENERIC_WRITE,
+            FILE_SHARE_READ,
+            NULL,
+            OPEN_ALWAYS,
+            FILE_ATTRIBUTE_NORMAL,
+            NULL);
+
     hMapFile = CreateFileMapping(
-            INVALID_HANDLE_VALUE, // use paging file
+            hFile, // use paging file
             NULL, // default security
             PAGE_READWRITE, // read/write access
             0, // maximum object size (high-order DWORD)
@@ -84,6 +93,7 @@ void SharedMemory::Close(void)
         {
                 if (pBufferPtr != NULL) UnmapViewOfFile(pBufferPtr);
                 if (hMapFile != NULL) CloseHandle(hMapFile);
+                DeleteFile(this->sharedMemFile);
         }
 
         isSharedMemoryHooked = false;
