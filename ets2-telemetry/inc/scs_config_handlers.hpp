@@ -2,9 +2,9 @@
 #define SCS_CFG_HANDLERS_H
 
 // SDK
-#include "scssdk_telemetry.h"
-#include "eurotrucks2/scssdk_eut2.h"
-#include "eurotrucks2/scssdk_telemetry_eut2.h"
+#include <scs/scssdk_telemetry.h>
+#include <scs/eurotrucks2/scssdk_eut2.h>
+#include <scs/eurotrucks2/scssdk_telemetry_eut2.h>
 
 typedef struct scsConfigHandler_s
 {

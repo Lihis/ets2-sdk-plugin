@@ -5,7 +5,6 @@
  */
 
 // Windows stuff.
-
 #define WINVER 0x0500
 #define _WIN32_WINNT 0x0500
 #include <windows.h>
@@ -15,10 +14,9 @@
 #include <stdarg.h>
 
 // SDK
-
-#include "scssdk_telemetry.h"
-#include "eurotrucks2/scssdk_eut2.h"
-#include "eurotrucks2/scssdk_telemetry_eut2.h"
+#include <scs/scssdk_telemetry.h>
+#include <scs/eurotrucks2/scssdk_eut2.h>
+#include <scs/eurotrucks2/scssdk_telemetry_eut2.h>
 
 // Plug-in
 #include "ets2-telemetry-common.hpp"
