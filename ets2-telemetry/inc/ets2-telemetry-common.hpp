@@ -25,13 +25,15 @@
 
 #define GENERAL_STRING_SIZE 64
 
+#include <cstdint>
+
 typedef struct
 {
     float trailerMass;
     char trailerId[GENERAL_STRING_SIZE];
     char trailerName[GENERAL_STRING_SIZE];    
-    int jobIncome;
-    int time_abs_delivery;
+    int32_t jobIncome;
+    int32_t time_abs_delivery;
     char citySrc[GENERAL_STRING_SIZE];
     char cityDst[GENERAL_STRING_SIZE];
     char compSrc[GENERAL_STRING_SIZE];
@@ -43,14 +45,14 @@ extern job_buffer_struct job_buffer;
 
 typedef struct ets2TelemetryMap_s
 {
-	unsigned int time;
-	unsigned int paused;
+	uint32_t time;
+	uint32_t paused;
 	
 	struct
 	{
-		unsigned int ets2_telemetry_plugin_revision;
-		unsigned int ets2_version_major;
-		unsigned int ets2_version_minor;
+               uint32_t ets2_telemetry_plugin_revision;
+               uint32_t ets2_version_major;
+               uint32_t ets2_version_minor;
 	} tel_revId;
 
 	// All variables per revision are packed into 1 struct.
@@ -58,8 +60,8 @@ typedef struct ets2TelemetryMap_s
 	// Replaced/new variabeles should be added in seperate structs
 	struct
 	{
-		bool engine_enabled;	// deprecated and removed since rev 5
-		bool trailer_attached;
+		uint8_t engine_enabled;	// deprecated and removed since rev 5
+		uint8_t trailer_attached;
 
 		// vehicle dynamics
 		float speed;
@@ -77,10 +79,10 @@ typedef struct ets2TelemetryMap_s
 		float rotationZ;
 	
 		// drivetrain essentials
-		int gear;
-		int gears;
-		int gearRanges;			//TODO:fix
-		int gearRangeActive;	//TODO:fix
+		int32_t gear;
+               int32_t gears;
+               int32_t gearRanges;			//TODO:fix
+               int32_t gearRangeActive;	//TODO:fix
 
 		float engineRpm;
 		float engineRpmMax;
@@ -104,15 +106,15 @@ typedef struct ets2TelemetryMap_s
 		// truck & trailer
 		float truckWeight;		//TODO:fix
 		float trailerWeight;
-		
-		int modelType[2];
-		int trailerType[2];			// ! deprecated
+
+               int32_t modelType[2];
+               int32_t trailerType[2];			// ! deprecated
 
 	} tel_rev1;
 
 	struct
 	{
-		long time_abs;
+		uint64_t time_abs;
 		int gears_reverse;
 
 		// Trailer ID & display name
@@ -121,8 +123,8 @@ typedef struct ets2TelemetryMap_s
 		char trailerName[GENERAL_STRING_SIZE];
 		
 		// Job information
-		int jobIncome;
-		int time_abs_delivery;
+               int32_t jobIncome;
+               int32_t time_abs_delivery;
 		char citySrc[GENERAL_STRING_SIZE];
 		char cityDst[GENERAL_STRING_SIZE];
 		char compSrc[GENERAL_STRING_SIZE];
@@ -132,44 +134,44 @@ typedef struct ets2TelemetryMap_s
 
 	struct
 	{
-		int retarderBrake;
-		int shifterSlot;
-		int shifterToggle;
-		int fill;
+               int32_t retarderBrake;
+               int32_t shifterSlot;
+               int32_t shifterToggle;
+               int32_t fill;
 
-		bool cruiseControl;
-		bool wipers;
+		uint8_t cruiseControl;
+               uint8_t wipers;
 
-		bool parkBrake;
-		bool motorBrake;
+               uint8_t parkBrake;
+               uint8_t motorBrake;
 
-		bool electricEnabled;
-		bool engineEnabled;
+               uint8_t electricEnabled;
+               uint8_t engineEnabled;
 
-		bool blinkerLeftActive;
-		bool blinkerRightActive;
-		bool blinkerLeftOn;
-		bool blinkerRightOn;
+               uint8_t blinkerLeftActive;
+               uint8_t blinkerRightActive;
+               uint8_t blinkerLeftOn;
+               uint8_t blinkerRightOn;
 
-		bool lightsParking;
-		bool lightsBeamLow;
-		bool lightsBeamHigh;
-		unsigned int lightsAuxFront;
-		unsigned int lightsAuxRoof;
-		bool lightsBeacon;
-		bool lightsBrake;
-		bool lightsReverse;
+               uint8_t lightsParking;
+               uint8_t lightsBeamLow;
+               uint8_t lightsBeamHigh;
+               uint32_t lightsAuxFront;
+               uint32_t lightsAuxRoof;
+               uint8_t lightsBeacon;
+               uint8_t lightsBrake;
+               uint8_t lightsReverse;
 
-		bool batteryVoltageWarning;
-		bool airPressureWarning;
-		bool airPressureEmergency;
-		bool adblueWarning;
-		bool oilPressureWarning;
-		bool waterTemperatureWarning;
+               uint8_t batteryVoltageWarning;
+               uint8_t airPressureWarning;
+               uint8_t airPressureEmergency;
+               uint8_t adblueWarning;
+               uint8_t oilPressureWarning;
+               uint8_t waterTemperatureWarning;
 
 		float airPressure;
 		float brakeTemperature;
-		int fuelWarning;
+		int32_t fuelWarning;
 		float adblue;
 		float adblueConsumption;
 		float oilPressure;
@@ -208,7 +210,7 @@ typedef struct ets2TelemetryMap_s
 		float waterTemperatureWarningValue;
 		float batteryVoltageWarningValue;
 
-		unsigned int retarderStepCount;
+               uint32_t retarderStepCount;
 		
 		float cabinPositionX;
 		float cabinPositionY;
@@ -223,7 +225,7 @@ typedef struct ets2TelemetryMap_s
 		char shifterType[MAX_SHIFTER_TYPE_STRING_SIZE]; // "arcade", "automatic", "manual", "hshifter"
 
 		float localScale; // time scale
-		int nextRestStop; // in minutes
+		int32_t nextRestStop; // in minutes
 		float trailerCoordinateX;
 		float trailerCoordinateY;
 		float trailerCoordinateZ;
@@ -231,7 +233,7 @@ typedef struct ets2TelemetryMap_s
 		float trailerRotationY;
 		float trailerRotationZ;
 		
-		int displayedGear;
+		int32_t displayedGear;
 		float navigationDistance;
 		float navigationTime;
 		float navigationSpeedLimit;
